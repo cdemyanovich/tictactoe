@@ -8,4 +8,4 @@ Scenario: start game
   Given I am not yet playing
   When I start a new game
   Then I should see the board
-  And I should see "Your move?"
+  And I should see "Your move? (format: b3) "

@@ -1,4 +1,4 @@
 $LOAD_PATH << File.expand_path('../../../lib', __FILE__)
 require 'tictactoe'
 
-require 'aruba'
+# require 'aruba'
