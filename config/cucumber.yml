@@ -1,0 +1,2 @@
+default: --tags ~@wip --tags ~@future features
+wip: --tags @wip features
