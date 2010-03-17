@@ -1,6 +1,10 @@
 module TicTacToe
   class Game
-    def initialize(output)
+    
+    attr_reader :board
+    
+    def initialize(board, output)
+      @board = board
       @output = output
     end
     
@@ -13,6 +17,10 @@ module TicTacToe
       @output.puts "   1   2   3"
       
       @output.puts "Your move? (format: b3) "
+    end
+    
+    def mark(square, piece)
+      @board.mark(square, piece)
     end
   end
 end
