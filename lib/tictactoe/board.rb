@@ -30,5 +30,46 @@ module TicTacToe
       @squares[square]
     end
     
+    def each_row
+      rows = [
+        { "a1" => @squares["a1"], "a2" => @squares["a2"], "a3" => @squares["a3"] },
+        { "b1" => @squares["b1"], "b2" => @squares["b2"], "b3" => @squares["b3"] },
+        { "c1" => @squares["c1"], "c2" => @squares["c2"], "c3" => @squares["c3"] },
+        { "a1" => @squares["a1"], "b1" => @squares["b1"], "c1" => @squares["c1"] },
+        { "a2" => @squares["a2"], "b2" => @squares["b2"], "c2" => @squares["c2"] },
+        { "a3" => @squares["a3"], "b3" => @squares["b3"], "c3" => @squares["c3"] },
+        { "a1" => @squares["a1"], "b2" => @squares["b2"], "c3" => @squares["c3"] },
+        { "a3" => @squares["a3"], "b2" => @squares["b2"], "c1" => @squares["c1"] }
+      ]
+      
+      rows.each do |squares|
+        yield Row.new(squares)
+      end
+    end
+    
+    def threatening_row
+      each_row do |row|
+        return row if row.threatening?
+      end
+    end
+    
+    class Row
+      
+      def initialize(squares)
+        @squares = squares
+      end
+      
+      def threatening?
+        @squares.values.find_all { |s| s == " " }.size == 1 && (@squares.values.find_all { |s| s == "X" }.size == 2 || @squares.values.find_all { |s| s == "O" }.size == 2)
+      end
+      
+      def first_empty_square
+        @squares.each_pair do |key, value|
+          return key if value == " "
+        end
+      end
+      
+    end
+    
   end
 end
