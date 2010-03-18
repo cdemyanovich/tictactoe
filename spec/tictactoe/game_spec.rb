@@ -44,7 +44,7 @@ module TicTacToe
   describe Game, '#board' do
     
     it "returns its board" do
-      board = Board.new({})
+      board = Board.new
       output = double('output').as_null_object
       game = Game.new(board, output)
       game.board.should == board

@@ -10,7 +10,7 @@ end
 
 
 When /^I start a new game$/ do
-  board = TicTacToe::Board.new({})
+  board = TicTacToe::Board.new
   game = TicTacToe::Game.new(board, output)
   game.play
 end
