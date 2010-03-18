@@ -37,17 +37,3 @@ end
 Then /^I should see "([^\"]*)"$/ do |text|
   output.messages.should include(text)
 end
-
-class Output
-  def messages
-    @messages ||= []
-  end
-
-  def puts(message)
-    messages << message
-  end
-end
-
-def output
-  @output ||= Output.new
-end
