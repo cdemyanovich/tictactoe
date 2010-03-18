@@ -78,6 +78,38 @@ module TicTacToe
       board["b2"].should == "O"
     end
     
+    context "when opposite corners are open" do
+      
+      it "takes the opposite corner in row a1,b2,c3" do
+        board = Board.new("a1" => "X", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+        player = UnbeatablePlayer.new
+        player.move(board)
+        board["c3"].should == "O"
+      end
+      
+      it "takes the opposite corner in row c3,b2,a1" do
+        board = Board.new("a1" => " ", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => "X")
+        player = UnbeatablePlayer.new
+        player.move(board)
+        board["a1"].should == "O"
+      end
+      
+      it "takes the opposite corner in row a3,b2,c1" do
+        board = Board.new("a1" => " ", "a2" => " ", "a3" => "X", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+        player = UnbeatablePlayer.new
+        player.move(board)
+        board["c1"].should == "O"
+      end
+      
+      it "takes the opposite corner in row c1,b2,a3" do
+        board = Board.new("a1" => " ", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => "X", "c2" => " ", "c3" => " ")
+        player = UnbeatablePlayer.new
+        player.move(board)
+        board["a3"].should == "O"
+      end
+      
+    end
+    
   end
   
 end
