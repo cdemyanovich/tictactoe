@@ -9,13 +9,7 @@ module TicTacToe
     end
     
     def play
-      @output.puts "a    |   |  "
-      @output.puts "  ---+---+---"
-      @output.puts "b    |   |  "
-      @output.puts "  ---+---+---"
-      @output.puts "c    |   |  "
-      @output.puts "   1   2   3"
-      
+      @board.draw @output
       @output.puts "Your move? (format: b3) "
     end
     

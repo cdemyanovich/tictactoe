@@ -6,7 +6,54 @@ module TicTacToe
     
     it "makes a board with all empty squares" do
       squares = Board.new.squares
-      squares.should == { "a1" => "", "a2" => "", "a3" => "", "b1" => "", "b2" => "", "b3" => "", "c1" => "", "c2" => "", "c3" => "" }
+      squares.should == { "a1" => " ", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => " ", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " " }
+    end
+    
+  end
+  
+  describe Board, '#draw' do
+    
+    before(:each) do
+      @output = double('output').as_null_object
+    end
+    
+    it "draws an empty board" do
+      board = Board.new
+      
+      @output.should_receive(:puts).with("a    |   |  ")
+      @output.should_receive(:puts).with("  ---+---+---")
+      @output.should_receive(:puts).with("b    |   |  ")
+      @output.should_receive(:puts).with("  ---+---+---")
+      @output.should_receive(:puts).with("c    |   |  ")
+      @output.should_receive(:puts).with("   1   2   3")
+      
+      board.draw(@output)
+    end
+    
+    it "draws a partially filled board" do
+      board = Board.new("a1" => "X", "a2" => " ", "a3" => "O", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => "X")
+      
+      @output.should_receive(:puts).with("a  X |   | O")
+      @output.should_receive(:puts).with("  ---+---+---")
+      @output.should_receive(:puts).with("b    | O |  ")
+      @output.should_receive(:puts).with("  ---+---+---")
+      @output.should_receive(:puts).with("c    |   | X")
+      @output.should_receive(:puts).with("   1   2   3")
+      
+      board.draw(@output)
+    end
+    
+    it "draws a filled board" do
+      board = Board.new("a1" => "X", "a2" => "X", "a3" => "O", "b1" => "O", "b2" => "O", "b3" => "X", "c1" => "X", "c2" => "O", "c3" => "X")
+      
+      @output.should_receive(:puts).with("a  X | X | O")
+      @output.should_receive(:puts).with("  ---+---+---")
+      @output.should_receive(:puts).with("b  O | O | X")
+      @output.should_receive(:puts).with("  ---+---+---")
+      @output.should_receive(:puts).with("c  X | O | X")
+      @output.should_receive(:puts).with("   1   2   3")
+      
+      board.draw(@output)
     end
     
   end
