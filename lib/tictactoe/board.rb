@@ -18,6 +18,10 @@ module TicTacToe
       output.puts "   1   2   3"
     end
     
+    def empty_squares
+      @squares.reject { |key, value| value != " " }.keys
+    end
+    
     def mark(square, piece)
       @squares[square] = piece
     end

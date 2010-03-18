@@ -58,6 +58,26 @@ module TicTacToe
     
   end
   
+  describe Board, 'empty_squares' do
+    
+    it "returns all squares when the board is empty" do
+      board = Board.new
+      board.empty_squares.should include("a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3")
+    end
+      
+    it "returns only the empty squares when the board is partially filled" do
+      board = Board.new("a1" => "X", "a2" => " ", "a3" => "O", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => "X")
+      board.empty_squares.should include("a2", "b1", "b3", "c1", "c2")
+      board.empty_squares.should_not include("a1", "a3", "b2", "c3")
+    end
+      
+    it "returns an empty list when the board is filled" do
+      board = Board.new("a1" => "X", "a2" => "X", "a3" => "O", "b1" => "O", "b2" => "O", "b3" => "X", "c1" => "X", "c2" => "O", "c3" => "X")
+      board.empty_squares.should == []
+    end
+      
+  end
+  
   describe Board, '#[]' do
     
     it "gives the piece at the given square when it contains a piece" do
