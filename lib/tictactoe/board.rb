@@ -51,6 +51,7 @@ module TicTacToe
       each_row do |row|
         return row if row.threatening?
       end
+      return nil
     end
     
     class Row

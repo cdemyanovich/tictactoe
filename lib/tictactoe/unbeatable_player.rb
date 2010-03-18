@@ -10,7 +10,13 @@ module TicTacToe
       if square = win_or_block_win(board)
         board.mark(square, @piece)
         return
-      end      
+      end
+      
+      # take center if open
+      if board.empty_squares.include?("b2")
+        board.mark("b2", @piece)
+        return
+      end
     end
     
   private

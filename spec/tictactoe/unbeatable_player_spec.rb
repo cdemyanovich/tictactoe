@@ -71,6 +71,13 @@ module TicTacToe
       
     end
     
+    it "takes the center if open" do
+      board = Board.new("a1" => "X", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => " ", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+      player = UnbeatablePlayer.new
+      player.move(board)
+      board["b2"].should == "O"
+    end
+    
   end
   
 end
