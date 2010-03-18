@@ -16,6 +16,7 @@ Background:
     | a1 | a2 | a3 | b1 | b2 | b3 | c1 | c2 | c3 |
     | X  |    |    |    | O  |    |    |    |    |
 
+@future
 Scenario: legal move
   When I mark "c3"
   Then I should see "X" in "c3"
