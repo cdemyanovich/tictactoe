@@ -4,7 +4,7 @@ end
 Given /^the following game in progress:$/ do |table|
   board = TicTacToe::Board.new(table.hashes.first)
   @game = TicTacToe::Game.new(board, output)
-  @game.start
+  @game.play
 end
 
 
@@ -12,7 +12,7 @@ end
 When /^I start a new game$/ do
   board = TicTacToe::Board.new({})
   game = TicTacToe::Game.new(board, output)
-  game.start
+  game.play
 end
 
 When /^I mark "([^\"]*)"$/ do |square|

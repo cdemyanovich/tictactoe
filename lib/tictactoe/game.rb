@@ -8,7 +8,7 @@ module TicTacToe
       @output = output
     end
     
-    def start
+    def play
       @output.puts "a    |   |  "
       @output.puts "  ---+---+---"
       @output.puts "b    |   |  "

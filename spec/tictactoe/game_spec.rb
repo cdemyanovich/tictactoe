@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module TicTacToe
-  describe Game, '#start' do
+  describe Game, '#play' do
     
     before(:each) do
       board = double('board').as_null_object
@@ -17,13 +17,13 @@ module TicTacToe
       @output.should_receive(:puts).with("c    |   |  ")
       @output.should_receive(:puts).with("   1   2   3")
       
-      @game.start
+      @game.play
     end
     
     it "prompts for the first move" do
       @output.should_receive(:puts).with("Your move? (format: b3) ")
       
-      @game.start
+      @game.play
     end
     
   end
