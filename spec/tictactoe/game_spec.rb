@@ -15,7 +15,7 @@ module TicTacToe
     end
     
     it "prompts for the first move" do
-      @output.should_receive(:puts).with("Your move? (format: b3) ")
+      @output.should_receive(:print).with("Your move? (format: b3) ")
       @game.play
     end
     

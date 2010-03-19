@@ -10,7 +10,7 @@ module TicTacToe
     
     def play
       @board.draw @output
-      @output.puts "Your move? (format: b3) "
+      @output.print "Your move? (format: b3) "
     end
     
     def mark(square, piece)
