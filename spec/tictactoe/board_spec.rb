@@ -171,4 +171,44 @@ module TicTacToe
     
   end
   
+  describe Board, '#winner' do
+    
+    it "returns nil if game is not over" do
+      board = Board.new(
+        "a1" => "X", "a2" => " ", "a3" => " ",
+        "b1" => " ", "b2" => "O", "b3" => " ",
+        "c1" => " ", "c2" => " ", "c3" => " "
+      )
+      board.winner.should be_nil
+    end
+    
+    it "returns X if X has 3 in a row" do
+      board = Board.new(
+        "a1" => "X", "a2" => "X", "a3" => "X",
+        "b1" => " ", "b2" => " ", "b3" => " ",
+        "c1" => " ", "c2" => " ", "c3" => " "
+      )
+      board.winner.should == "X"
+    end
+    
+    it "returns O if O has 3 in a row" do
+      board = Board.new(
+        "a1" => " ", "a2" => " ", "a3" => "O",
+        "b1" => " ", "b2" => " ", "b3" => "O",
+        "c1" => " ", "c2" => " ", "c3" => "O"
+      )
+      board.winner.should == "O"
+    end
+    
+    it "returns ' ' if neither X nor O has 3 in a row" do
+      board = Board.new(
+        "a1" => "X", "a2" => "X", "a3" => "O",
+        "b1" => "O", "b2" => "O", "b3" => "X",
+        "c1" => "X", "c2" => "O", "c3" => "X"
+      )
+      board.winner.should == " "
+    end
+    
+  end
+  
 end

@@ -4,7 +4,7 @@ end
 Given /^the following game in progress:$/ do |table|
   board = TicTacToe::Board.new(table.hashes.first)
   @game = TicTacToe::Game.new(board, output)
-  @game.play
+  @game.start
 end
 
 
@@ -12,11 +12,7 @@ end
 When /^I start a new game$/ do
   board = TicTacToe::Board.new
   game = TicTacToe::Game.new(board, output)
-  game.play
-end
-
-When /^I mark "([^\"]*)"$/ do |square|
-  @game.mark(square, "X")
+  game.start
 end
 
 
@@ -27,11 +23,7 @@ Then /^I should see the board$/ do
   output.messages.should include("b    |   |  ")
   output.messages.should include("  ---+---+---")
   output.messages.should include("c    |   |  ")
-  output.messages.should include("   1   2   3")
-end
-
-Then /^I should see "([^\"]*)" in "([^\"]*)"$/ do |mark, square|
-  @game.board[square].should == mark
+  output.messages.should include("   1   2   3\n\n")
 end
 
 Then /^I should see "([^\"]*)"$/ do |text|

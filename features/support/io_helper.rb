@@ -8,6 +8,10 @@ module IoHelper
     def puts(message)
       messages << message
     end
+    
+    def print(message)
+      messages << message
+    end
   end
 
   def output

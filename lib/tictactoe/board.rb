@@ -34,6 +34,14 @@ module TicTacToe
       @squares.values.find_all { |s| s == "O" }.size
     end
     
+    def winner
+      each_row do |row|
+        return row.winner if row.winner
+      end
+      return " " if full?
+      nil
+    end
+    
     def mark(square, piece)
       @squares[square] = piece
     end
@@ -83,6 +91,18 @@ module TicTacToe
         end
       end
       
+      def winner
+        return "X" if @squares.values.all? { |s| s == "X" }
+        return "O" if @squares.values.all? { |s| s == "O" }
+        return nil
+      end
+      
+    end
+    
+  private
+  
+    def full?
+      @squares.values.none? { |s| s == " " }
     end
     
   end
