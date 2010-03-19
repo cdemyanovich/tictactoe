@@ -3,30 +3,11 @@ module TicTacToe
   class UnbeatablePlayer
     
     def move(board)
-      if square = win_or_block_win(board)
-        board.mark(square, "O")
-        return
-      end
-      
-      # take center if open
-      if board.empty_squares.include?("b2")
-        board.mark("b2", "O")
-        return
-      end
-      
-      if square = take_opposite_corner(board)
-        board.mark(square, "O")
-        return
-      end
-      
-      if board.number_of_xs == 2 && board.number_of_os == 1 && board["b2"] == "O" &&
-         ( (board["a1"] == "X" && board["c3"] == "X") || (board["a3"] == "X" && board["c1"] == "X") )
-        square = ["a2", "b3", "c2", "b1"][rand(4)]
-        board.mark(square, "O")
-        return
-      end
-      
-      square = board.empty_squares[rand(board.empty_squares.size)]
+      square = win_or_block_win(board) ||
+               take_center(board) ||
+               take_opposite_corner(board) ||
+               prevent_fork(board) ||
+               board.empty_squares[rand(board.empty_squares.size)]
       board.mark(square, "O")
     end
     
@@ -42,6 +23,10 @@ module TicTacToe
       return nil
     end
     
+    def take_center(board)
+      return board.empty_squares.include?("b2") ? "b2" : nil
+    end
+    
     def take_opposite_corner(board)
       if board["a1"] == "X" && board["c3"] == " "
         return "c3"
@@ -54,6 +39,14 @@ module TicTacToe
       else
         return nil
       end
+    end
+    
+    def prevent_fork(board)
+      if board.number_of_xs == 2 && board.number_of_os == 1 && board["b2"] == "O" &&
+         ( (board["a1"] == "X" && board["c3"] == "X") || (board["a3"] == "X" && board["c1"] == "X") )
+        return ["a2", "b3", "c2", "b1"][rand(4)]
+      end
+      return nil
     end
     
   end
