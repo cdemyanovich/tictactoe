@@ -5,8 +5,7 @@ module TicTacToe
   describe Board, '.new' do
     
     it "makes a board with all empty squares" do
-      squares = Board.new.squares
-      squares.should == {
+      Board.new.squares.should == {
         "a1" => " ", "a2" => " ", "a3" => " ",
         "b1" => " ", "b2" => " ", "b3" => " ",
         "c1" => " ", "c2" => " ", "c3" => " "
