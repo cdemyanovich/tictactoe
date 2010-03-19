@@ -73,7 +73,8 @@ module TicTacToe
       end
       
       def threatening?
-        @squares.values.find_all { |s| s == " " }.size == 1 && (@squares.values.find_all { |s| s == "X" }.size == 2 || @squares.values.find_all { |s| s == "O" }.size == 2)
+        @squares.values.find_all { |s| s == " " }.size == 1 &&
+        (@squares.values.find_all { |s| s == "X" }.size == 2 || @squares.values.find_all { |s| s == "O" }.size == 2)
       end
       
       def first_empty_square
