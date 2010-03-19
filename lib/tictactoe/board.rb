@@ -14,6 +14,7 @@ module TicTacToe
     end
     
     def draw(output)
+      output.puts
       output.puts "a  #{@squares['a1']} | #{@squares['a2']} | #{@squares['a3']}"
       output.puts "  ---+---+---"
       output.puts "b  #{@squares['b1']} | #{@squares['b2']} | #{@squares['b3']}"

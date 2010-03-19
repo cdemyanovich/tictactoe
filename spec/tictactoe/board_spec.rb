@@ -24,6 +24,7 @@ module TicTacToe
     it "draws an empty board" do
       board = Board.new
       
+      @output.should_receive(:puts)
       @output.should_receive(:puts).with("a    |   |  ")
       @output.should_receive(:puts).with("  ---+---+---")
       @output.should_receive(:puts).with("b    |   |  ")
@@ -41,6 +42,7 @@ module TicTacToe
         "c1" => " ", "c2" => " ", "c3" => "X"
       )
       
+      @output.should_receive(:puts)
       @output.should_receive(:puts).with("a  X |   | O")
       @output.should_receive(:puts).with("  ---+---+---")
       @output.should_receive(:puts).with("b    | O |  ")
@@ -58,6 +60,7 @@ module TicTacToe
         "c1" => "X", "c2" => "O", "c3" => "X"
       )
       
+      @output.should_receive(:puts)
       @output.should_receive(:puts).with("a  X | X | O")
       @output.should_receive(:puts).with("  ---+---+---")
       @output.should_receive(:puts).with("b  O | O | X")
