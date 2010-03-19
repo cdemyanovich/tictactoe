@@ -42,9 +42,13 @@ module TicTacToe
   private
   
     def win_or_block_win(board)
-      if row = board.threatening_row
-        row.first_empty_square
+      board.each_row do |row|
+        return row.first_empty_square if row.threatening?("O")
       end
+      board.each_row do |row|
+        return row.first_empty_square if row.threatening?("X")
+      end
+      return nil
     end
     
   end

@@ -101,6 +101,17 @@ module TicTacToe
         board["c1"].should == "O"
       end
       
+      it "takes the last square to win before taking the last square to block" do
+        board = Board.new(
+          "a1" => "X", "a2" => " ", "a3" => " ",
+          "b1" => " ", "b2" => "O", "b3" => " ",
+          "c1" => "X", "c2" => "O", "c3" => "X"
+        )
+        player = UnbeatablePlayer.new
+        player.move(board)
+        board["a2"].should == "O"
+      end
+      
     end
     
     it "takes the center if open" do

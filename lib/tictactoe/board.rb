@@ -67,23 +67,15 @@ module TicTacToe
         yield Row.new(squares)
       end
     end
-    
-    def threatening_row
-      each_row do |row|
-        return row if row.threatening?
-      end
-      return nil
-    end
-    
+        
     class Row
       
       def initialize(squares)
         @squares = squares
       end
       
-      def threatening?
-        @squares.values.find_all { |s| s == " " }.size == 1 &&
-        (@squares.values.find_all { |s| s == "X" }.size == 2 || @squares.values.find_all { |s| s == "O" }.size == 2)
+      def threatening?(piece)
+        @squares.values.find_all { |s| s == " " }.size == 1 && @squares.values.find_all { |s| s == piece }.size == 2
       end
       
       def first_empty_square
