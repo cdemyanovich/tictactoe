@@ -22,6 +22,14 @@ module TicTacToe
       @squares.reject { |key, value| value != " " }.keys
     end
     
+    def number_of_xs
+      @squares.values.find_all { |s| s == "X" }.size
+    end
+    
+    def number_of_os
+      @squares.values.find_all { |s| s == "O" }.size
+    end
+    
     def mark(square, piece)
       @squares[square] = piece
     end

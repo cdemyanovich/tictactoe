@@ -110,6 +110,24 @@ module TicTacToe
       
     end
     
+    context "when fork is imminent (X O X on a diagonal)" do
+      
+      it "takes an empty side for diagonal a1,b2,c3" do
+        board = Board.new("a1" => "X", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => "X")
+        player = UnbeatablePlayer.new
+        player.move(board)
+        [ board["a2"], board["b3"], board["c2"], board["b1"] ].should include("O")
+      end
+      
+      it "takes an empty side for diagonal a3,b2,c1" do
+        board = Board.new("a1" => " ", "a2" => " ", "a3" => "X", "b1" => " ", "b2" => "O", "b3" => " ", "c1" => "X", "c2" => " ", "c3" => " ")
+        player = UnbeatablePlayer.new
+        player.move(board)
+        [ board["a2"], board["b3"], board["c2"], board["b1"] ].should include("O")
+      end
+      
+    end
+    
   end
   
 end

@@ -97,4 +97,42 @@ module TicTacToe
   
   end
   
+  describe Board, '#number_of_xs' do
+    
+    it "is 0 when there are none" do
+      board = Board.new
+      board.number_of_xs.should == 0
+    end
+    
+    it "is 1 when there is 1" do
+      board = Board.new("a1" => "X", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => " ", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+      board.number_of_xs.should == 1
+    end
+    
+    it "is 2 when there are 2" do
+      board = Board.new("a1" => "X", "a2" => "X", "a3" => " ", "b1" => " ", "b2" => " ", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+      board.number_of_xs.should == 2
+    end
+    
+  end
+  
+  describe Board, '#number_of_os' do
+    
+    it "is 0 when there are none" do
+      board = Board.new
+      board.number_of_os.should == 0
+    end
+    
+    it "is 1 when there is 1" do
+      board = Board.new("a1" => "O", "a2" => " ", "a3" => " ", "b1" => " ", "b2" => " ", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+      board.number_of_os.should == 1
+    end
+    
+    it "is 2 when there are 2" do
+      board = Board.new("a1" => "O", "a2" => "O", "a3" => " ", "b1" => " ", "b2" => " ", "b3" => " ", "c1" => " ", "c2" => " ", "c3" => " ")
+      board.number_of_os.should == 2
+    end
+    
+  end
+  
 end
