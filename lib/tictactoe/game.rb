@@ -6,11 +6,24 @@ module TicTacToe
     def initialize(board = Board.new, output = $stdout)
       @board = board
       @output = output
+      @o_player = UnbeatablePlayer.new
     end
     
     def play
       @board.draw @output
       @output.print "Your move? (format: b3) "
+      
+      square = $stdin.gets
+      square = square.chomp.downcase
+      until @board.empty_squares.include?(square)
+        print "Invalid move. Try again. "
+        square = $stdin.gets
+        square = square.chomp.downcase
+      end
+      
+      @board.mark(square, "X")
+      @o_player.move(@board)
+      @board.draw(@output)
     end
     
     def mark(square, piece)
