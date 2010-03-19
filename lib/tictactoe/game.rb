@@ -3,7 +3,7 @@ module TicTacToe
     
     attr_reader :board
     
-    def initialize(board, output = $stdout)
+    def initialize(board = Board.new, output = $stdout)
       @board = board
       @output = output
     end
