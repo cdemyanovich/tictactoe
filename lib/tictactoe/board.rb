@@ -19,7 +19,7 @@ module TicTacToe
       output.puts "b  #{@squares['b1']} | #{@squares['b2']} | #{@squares['b3']}"
       output.puts "  ---+---+---"
       output.puts "c  #{@squares['c1']} | #{@squares['c2']} | #{@squares['c3']}"
-      output.puts "   1   2   3"
+      output.puts "   1   2   3\n\n"
     end
     
     def empty_squares

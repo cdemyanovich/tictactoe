@@ -29,7 +29,7 @@ module TicTacToe
       @output.should_receive(:puts).with("b    |   |  ")
       @output.should_receive(:puts).with("  ---+---+---")
       @output.should_receive(:puts).with("c    |   |  ")
-      @output.should_receive(:puts).with("   1   2   3")
+      @output.should_receive(:puts).with("   1   2   3\n\n")
       
       board.draw(@output)
     end
@@ -46,7 +46,7 @@ module TicTacToe
       @output.should_receive(:puts).with("b    | O |  ")
       @output.should_receive(:puts).with("  ---+---+---")
       @output.should_receive(:puts).with("c    |   | X")
-      @output.should_receive(:puts).with("   1   2   3")
+      @output.should_receive(:puts).with("   1   2   3\n\n")
       
       board.draw(@output)
     end
@@ -63,7 +63,7 @@ module TicTacToe
       @output.should_receive(:puts).with("b  O | O | X")
       @output.should_receive(:puts).with("  ---+---+---")
       @output.should_receive(:puts).with("c  X | O | X")
-      @output.should_receive(:puts).with("   1   2   3")
+      @output.should_receive(:puts).with("   1   2   3\n\n")
       
       board.draw(@output)
     end
