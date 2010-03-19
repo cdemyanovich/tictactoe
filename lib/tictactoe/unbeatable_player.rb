@@ -34,6 +34,9 @@ module TicTacToe
         board.mark(square, "O")
         return
       end
+      
+      square = board.empty_squares[rand(board.empty_squares.size)]
+      board.mark(square, "O")
     end
     
   private
