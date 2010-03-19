@@ -6,7 +6,7 @@ module TicTacToe
     attr_reader :squares
     
     def initialize(squares = EMPTY_SQUARES)
-      @squares = squares
+      @squares = squares.dup
     end
     
     def draw(output)
