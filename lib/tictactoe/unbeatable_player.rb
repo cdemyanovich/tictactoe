@@ -14,17 +14,8 @@ module TicTacToe
         return
       end
       
-      if board["a1"] != "O" && board["a1"] != " " && board["c3"] == " "
-        board.mark("c3", "O")
-        return
-      elsif board["c3"] != "O" && board["c3"] != " " && board["a1"] == " "
-        board.mark("a1", "O")
-        return
-      elsif board["a3"] != "O" && board["a3"] != " " && board["c1"] == " "
-        board.mark("c1", "O")
-        return
-      elsif board["c1"] != "O" && board["c1"] != " " && board["a3"] == " "
-        board.mark("a3", "O")
+      if square = take_opposite_corner(board)
+        board.mark(square, "O")
         return
       end
       
@@ -49,6 +40,20 @@ module TicTacToe
         return row.first_empty_square if row.threatening?("X")
       end
       return nil
+    end
+    
+    def take_opposite_corner(board)
+      if board["a1"] == "X" && board["c3"] == " "
+        return "c3"
+      elsif board["c3"] == "X" && board["a1"] == " "
+        return "a1"
+      elsif board["a3"] == "X" && board["c1"] == " "
+        return "c1"
+      elsif board["c1"] == "X" && board["a3"] == " "
+        return "a3"
+      else
+        return nil
+      end
     end
     
   end
