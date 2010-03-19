@@ -14,12 +14,10 @@ module TicTacToe
     
     def play
       until @board.winner
-        square = $stdin.gets
-        square = square.chomp.downcase
+        square = $stdin.gets.chomp.downcase
         until @board.empty_squares.include?(square)
           print "Invalid move. Try again. "
-          square = $stdin.gets
-          square = square.chomp.downcase
+          square = $stdin.gets.chomp.downcase
         end
         
         @board.mark(square, "X")
