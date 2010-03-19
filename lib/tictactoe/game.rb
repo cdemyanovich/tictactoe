@@ -42,6 +42,7 @@ module TicTacToe
       elsif winner == " "
         @output.puts "Draw. Let's play again."
       end
+      @output.puts
     end
   end
 end
