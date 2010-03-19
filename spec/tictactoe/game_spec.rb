@@ -1,25 +1,6 @@
 require 'spec_helper'
 
 module TicTacToe
-  describe Game, '#start' do
-    
-    before(:each) do
-      @board = double('board').as_null_object
-      @output = double('output').as_null_object
-      @game = Game.new(@board, @output)
-    end
-    
-    it "draws an initial board" do
-      @board.should_receive(:draw).with(@output)
-      @game.start
-    end
-    
-    it "prompts for the first move" do
-      @output.should_receive(:print).with("Your move? (format: b3) ")
-      @game.start
-    end
-    
-  end
   
   describe Game, '#announce_winner' do
     
@@ -45,4 +26,5 @@ module TicTacToe
     end
     
   end
+  
 end

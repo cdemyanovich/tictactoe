@@ -7,13 +7,11 @@ module TicTacToe
       @o_player = UnbeatablePlayer.new
     end
     
-    def start
-      @board.draw @output
-      @output.print "Your move? (format: b3) "
-    end
-    
     def play
       until @board.winner
+        @board.draw @output
+        @output.print "Your move? (format: b3) "
+        
         square = $stdin.gets.chomp.downcase
         until @board.empty_squares.include?(square)
           print "Invalid move. Try again. "
@@ -24,8 +22,6 @@ module TicTacToe
         break if @board.winner
               
         @o_player.move(@board)
-        @board.draw(@output)
-        @output.print "Your move? (format: b3) "
       end
       
       @board.draw(@output)
