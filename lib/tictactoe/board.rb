@@ -13,6 +13,10 @@ module TicTacToe
       @squares = squares.dup
     end
     
+    def dup
+      Board.new(@squares.dup)
+    end
+    
     def draw(output)
       output.puts
       output.puts "a  #{@squares['a1']} | #{@squares['a2']} | #{@squares['a3']}"

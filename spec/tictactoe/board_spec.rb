@@ -14,6 +14,21 @@ module TicTacToe
     
   end
   
+  describe Board, '#dup' do
+    
+    it "creates a copy of the board" do
+      squares = {
+        "a1" => "X", "a2" => " ", "a3" => "O",
+        "b1" => " ", "b2" => "O", "b3" => " ",
+        "c1" => " ", "c2" => " ", "c3" => "X"
+      }
+      board = Board.new(squares)
+      board_copy = board.dup
+      board_copy.squares.should == squares
+    end
+    
+  end
+  
   describe Board, '#draw' do
     
     before(:each) do
