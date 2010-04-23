@@ -30,15 +30,7 @@ module TicTacToe
     def empty_squares
       @squares.reject { |key, value| value != " " }.keys
     end
-    
-    def number_of_xs
-      @squares.values.find_all { |s| s == "X" }.size
-    end
-    
-    def number_of_os
-      @squares.values.find_all { |s| s == "O" }.size
-    end
-    
+        
     def winner
       each_row do |row|
         return row.winner if row.winner
@@ -76,16 +68,6 @@ module TicTacToe
       
       def initialize(squares)
         @squares = squares
-      end
-      
-      def threatening?(piece)
-        @squares.values.find_all { |s| s == " " }.size == 1 && @squares.values.find_all { |s| s == piece }.size == 2
-      end
-      
-      def first_empty_square
-        @squares.each_pair do |key, value|
-          return key if value == " "
-        end
       end
       
       def winner

@@ -2,53 +2,46 @@ module TicTacToe
   
   class UnbeatablePlayer
     
+    MAX_DEPTH = 9
+    OPPONENT_OF = { "X" => "O", "O" => "X" }
+    WINNING_MOVE_SCORE = 1000
+    
     def move(board)
-      square = win_or_block_win(board) ||
-               take_center(board) ||
-               take_opposite_corner(board) ||
-               prevent_fork(board) ||
-               board.empty_squares[rand(board.empty_squares.size)]
+      square = best_move(board)
       board.mark(square, "O")
     end
     
   private
-  
-    def win_or_block_win(board)
-      board.each_row do |row|
-        return row.first_empty_square if row.threatening?("O")
+
+    def best_move(board)
+      possible_moves = board.empty_squares.sort_by do |square|
+        board_copy = board.dup
+        board_copy.mark(square, "O")
+        score_move(board_copy, 1, OPPONENT_OF["O"])
       end
-      board.each_row do |row|
-        return row.first_empty_square if row.threatening?("X")
-      end
-      return nil
+      possible_moves.first
     end
     
-    def take_center(board)
-      return board.empty_squares.include?("b2") ? "b2" : nil
-    end
-    
-    def take_opposite_corner(board)
-      if board["a1"] == "X" && board["c3"] == " "
-        return "c3"
-      elsif board["c3"] == "X" && board["a1"] == " "
-        return "a1"
-      elsif board["a3"] == "X" && board["c1"] == " "
-        return "c1"
-      elsif board["c1"] == "X" && board["a3"] == " "
-        return "a3"
-      else
-        return nil
+    def score_move(board, depth, piece)
+      winner = board.winner
+      if winner == piece
+        return WINNING_MOVE_SCORE - depth
+      elsif winner == OPPONENT_OF[piece]
+        return -WINNING_MOVE_SCORE + depth
+      elsif winner == " " || depth > MAX_DEPTH
+        return depth
       end
-    end
-    
-    def prevent_fork(board)
-      if board.number_of_xs == 2 && board.number_of_os == 1 && board["b2"] == "O" &&
-         ( (board["a1"] == "X" && board["c3"] == "X") || (board["a3"] == "X" && board["c1"] == "X") )
-        return ["a2", "b3", "c2", "b1"][rand(4)]
+      
+      max_score = -WINNING_MOVE_SCORE
+      board.empty_squares.each do |square|
+        board_copy = board.dup
+        board_copy.mark(square, piece)
+        score = -score_move(board_copy, depth + 1, OPPONENT_OF[piece])
+        max_score = [max_score, score].max
       end
-      return nil
+      return max_score
     end
-    
+        
   end
   
 end
