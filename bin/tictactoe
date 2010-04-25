@@ -3,5 +3,5 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'tictactoe'
 
-game = TicTacToe::Game.new
+game = TicTacToe::Game.new(TicTacToe::Board.new)
 game.play
