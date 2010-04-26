@@ -1,7 +1,7 @@
 module TicTacToe
   class Game
     
-    def initialize(board, output = $stdout)
+    def initialize(board, output)
       @board = board
       @output = output
       @o_player = UnbeatablePlayer.new
