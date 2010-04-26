@@ -7,7 +7,8 @@ module TicTacToe
     before(:each) do
       @board = double('board').as_null_object
       @output = double('output').as_null_object
-      @game = Game.new(@board, @output)
+      input = double('input').as_null_object
+      @game = Game.new(@board, @output, input)
     end
     
     it "shamefully admits defeat if X wins" do

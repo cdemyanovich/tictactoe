@@ -1,9 +1,10 @@
 module TicTacToe
   class Game
     
-    def initialize(board, output)
+    def initialize(board, output, input)
       @board = board
       @output = output
+      @input = input
       @o_player = UnbeatablePlayer.new
     end
     
@@ -12,10 +13,10 @@ module TicTacToe
         @board.draw @output
         @output.print "Your move? (format: b3) "
         
-        square = $stdin.gets.chomp.downcase
+        square = @input.gets.chomp.downcase
         until @board.empty_squares.include?(square)
           print "Invalid move. Try again. "
-          square = $stdin.gets.chomp.downcase
+          square = @input.gets.chomp.downcase
         end
         
         @board.mark(square, "X")
