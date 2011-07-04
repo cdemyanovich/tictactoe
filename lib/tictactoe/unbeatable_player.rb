@@ -1,16 +1,16 @@
 module TicTacToe
-  
+
   class UnbeatablePlayer
-    
+
     MAX_DEPTH = 9
     OPPONENT_OF = { "X" => "O", "O" => "X" }
     WINNING_MOVE_SCORE = 1000
-    
+
     def move(board)
       square = best_move(board)
       board.mark(square, "O")
     end
-    
+
   private
 
     def best_move(board)
@@ -21,7 +21,7 @@ module TicTacToe
       end
       possible_moves.first
     end
-    
+
     def score_move(board, depth, piece)
       winner = board.winner
       if winner == piece
@@ -31,7 +31,7 @@ module TicTacToe
       elsif winner == " " || depth > MAX_DEPTH
         return depth
       end
-      
+
       max_score = -WINNING_MOVE_SCORE
       board.empty_squares.each do |square|
         board_copy = board.dup
@@ -41,7 +41,7 @@ module TicTacToe
       end
       return max_score
     end
-        
+
   end
-  
+
 end
