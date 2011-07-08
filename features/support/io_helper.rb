@@ -1,5 +1,5 @@
 module IoHelper
-  
+
   class Output
     def messages
       @messages ||= []
@@ -8,7 +8,7 @@ module IoHelper
     def puts(message)
       messages << message
     end
-    
+
     def print(message)
       messages << message
     end
@@ -17,7 +17,7 @@ module IoHelper
   def output
     @output ||= Output.new
   end
-  
+
 end
 
 World(IoHelper)
