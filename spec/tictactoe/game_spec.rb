@@ -12,17 +12,17 @@ module TicTacToe
     end
 
     it "shamefully admits defeat if X wins" do
-      @output.should_receive(:puts).with("X wins. Looks like I need to work on the 'un' in 'unbeatable'. :-/")
+      expect(@output).to receive(:puts).with("X wins. Looks like I need to work on the 'un' in 'unbeatable'. :-/")
       @game.announce_winner("X")
     end
 
     it "boastfully declares victory if O wins" do
-      @output.should_receive(:puts).with("O wins! I'm unbeatable!")
+      expect(@output).to receive(:puts).with("O wins! I'm unbeatable!")
       @game.announce_winner("O")
     end
 
     it "casually notes a tie" do
-      @output.should_receive(:puts).with("Draw. Let's play again.")
+      expect(@output).to receive(:puts).with("Draw. Let's play again.")
       @game.announce_winner(" ")
     end
 

@@ -5,11 +5,11 @@ module TicTacToe
   describe Board, '.new' do
 
     it "makes a board with all empty squares" do
-      Board.new.squares.should == {
+      expect(Board.new.squares).to eq({
         "a1" => " ", "a2" => " ", "a3" => " ",
         "b1" => " ", "b2" => " ", "b3" => " ",
         "c1" => " ", "c2" => " ", "c3" => " "
-      }
+      })
     end
 
   end
@@ -24,7 +24,7 @@ module TicTacToe
       }
       board = Board.new(squares)
       board_copy = board.dup
-      board_copy.squares.should == squares
+      expect(board_copy.squares).to eq(squares)
     end
 
   end
@@ -38,13 +38,13 @@ module TicTacToe
     it "draws an empty board" do
       board = Board.new
 
-      @output.should_receive(:puts)
-      @output.should_receive(:puts).with("a    |   |  ")
-      @output.should_receive(:puts).with("  ---+---+---")
-      @output.should_receive(:puts).with("b    |   |  ")
-      @output.should_receive(:puts).with("  ---+---+---")
-      @output.should_receive(:puts).with("c    |   |  ")
-      @output.should_receive(:puts).with("   1   2   3\n\n")
+      expect(@output).to receive(:puts)
+      expect(@output).to receive(:puts).with("a    |   |  ")
+      expect(@output).to receive(:puts).with("  ---+---+---")
+      expect(@output).to receive(:puts).with("b    |   |  ")
+      expect(@output).to receive(:puts).with("  ---+---+---")
+      expect(@output).to receive(:puts).with("c    |   |  ")
+      expect(@output).to receive(:puts).with("   1   2   3\n\n")
 
       board.draw(@output)
     end
@@ -56,13 +56,13 @@ module TicTacToe
         "c1" => " ", "c2" => " ", "c3" => "X"
       )
 
-      @output.should_receive(:puts)
-      @output.should_receive(:puts).with("a  X |   | O")
-      @output.should_receive(:puts).with("  ---+---+---")
-      @output.should_receive(:puts).with("b    | O |  ")
-      @output.should_receive(:puts).with("  ---+---+---")
-      @output.should_receive(:puts).with("c    |   | X")
-      @output.should_receive(:puts).with("   1   2   3\n\n")
+      expect(@output).to receive(:puts)
+      expect(@output).to receive(:puts).with("a  X |   | O")
+      expect(@output).to receive(:puts).with("  ---+---+---")
+      expect(@output).to receive(:puts).with("b    | O |  ")
+      expect(@output).to receive(:puts).with("  ---+---+---")
+      expect(@output).to receive(:puts).with("c    |   | X")
+      expect(@output).to receive(:puts).with("   1   2   3\n\n")
 
       board.draw(@output)
     end
@@ -74,13 +74,13 @@ module TicTacToe
         "c1" => "X", "c2" => "O", "c3" => "X"
       )
 
-      @output.should_receive(:puts)
-      @output.should_receive(:puts).with("a  X | X | O")
-      @output.should_receive(:puts).with("  ---+---+---")
-      @output.should_receive(:puts).with("b  O | O | X")
-      @output.should_receive(:puts).with("  ---+---+---")
-      @output.should_receive(:puts).with("c  X | O | X")
-      @output.should_receive(:puts).with("   1   2   3\n\n")
+      expect(@output).to receive(:puts)
+      expect(@output).to receive(:puts).with("a  X | X | O")
+      expect(@output).to receive(:puts).with("  ---+---+---")
+      expect(@output).to receive(:puts).with("b  O | O | X")
+      expect(@output).to receive(:puts).with("  ---+---+---")
+      expect(@output).to receive(:puts).with("c  X | O | X")
+      expect(@output).to receive(:puts).with("   1   2   3\n\n")
 
       board.draw(@output)
     end
@@ -91,7 +91,7 @@ module TicTacToe
 
     it "returns all squares when the board is empty" do
       board = Board.new
-      board.empty_squares.should include("a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3")
+      expect(board.empty_squares).to include("a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3")
     end
 
     it "returns only the empty squares when the board is partially filled" do
@@ -100,8 +100,8 @@ module TicTacToe
         "b1" => " ", "b2" => "O", "b3" => " ",
         "c1" => " ", "c2" => " ", "c3" => "X"
       )
-      board.empty_squares.should include("a2", "b1", "b3", "c1", "c2")
-      board.empty_squares.should_not include("a1", "a3", "b2", "c3")
+      expect(board.empty_squares).to include("a2", "b1", "b3", "c1", "c2")
+      expect(board.empty_squares).not_to include("a1", "a3", "b2", "c3")
     end
 
     it "returns an empty list when the board is filled" do
@@ -110,7 +110,7 @@ module TicTacToe
         "b1" => "O", "b2" => "O", "b3" => "X",
         "c1" => "X", "c2" => "O", "c3" => "X"
       )
-      board.empty_squares.should == []
+      expect(board.empty_squares).to eq([])
     end
 
   end
@@ -119,7 +119,7 @@ module TicTacToe
 
     it "gives the piece at the given square when it contains a piece" do
       board = Board.new("b3" => "X")
-      board["b3"].should == "X"
+      expect(board["b3"]).to eq("X")
     end
 
   end
@@ -129,7 +129,7 @@ module TicTacToe
     it "fills the given square with the given piece" do
       board = Board.new
       board.mark("b3", "X")
-      board["b3"].should == "X"
+      expect(board["b3"]).to eq("X")
     end
 
   end
@@ -142,7 +142,7 @@ module TicTacToe
         "b1" => " ", "b2" => "O", "b3" => " ",
         "c1" => " ", "c2" => " ", "c3" => " "
       )
-      board.winner.should be_nil
+      expect(board.winner).to be_nil
     end
 
     it "returns X if X has 3 in a row" do
@@ -151,7 +151,7 @@ module TicTacToe
         "b1" => " ", "b2" => " ", "b3" => " ",
         "c1" => " ", "c2" => " ", "c3" => " "
       )
-      board.winner.should == "X"
+      expect(board.winner).to eq("X")
     end
 
     it "returns O if O has 3 in a row" do
@@ -160,7 +160,7 @@ module TicTacToe
         "b1" => " ", "b2" => " ", "b3" => "O",
         "c1" => " ", "c2" => " ", "c3" => "O"
       )
-      board.winner.should == "O"
+      expect(board.winner).to eq("O")
     end
 
     it "returns ' ' if neither X nor O has 3 in a row" do
@@ -169,7 +169,7 @@ module TicTacToe
         "b1" => "O", "b2" => "O", "b3" => "X",
         "c1" => "X", "c2" => "O", "c3" => "X"
       )
-      board.winner.should == " "
+      expect(board.winner).to eq(" ")
     end
 
   end
