@@ -14,7 +14,7 @@ module TicTacToe
         @output.print "Your move? (format: b3) "
 
         square = @input.gets.chomp.downcase
-        until @board.empty_squares.include?(square)
+        until @board.empty_squares.include?(square.to_sym)
           print "Invalid move. Try again. "
           square = @input.gets.chomp.downcase
         end

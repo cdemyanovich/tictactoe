@@ -2,9 +2,9 @@ module TicTacToe
   class Board
 
     EMPTY_SQUARES = {
-      "a1" => " ", "a2" => " ", "a3" => " ",
-      "b1" => " ", "b2" => " ", "b3" => " ",
-      "c1" => " ", "c2" => " ", "c3" => " "
+      a1: " ", a2: " ", a3: " ",
+      b1: " ", b2: " ", b3: " ",
+      c1: " ", c2: " ", c3: " "
     }
 
     attr_reader :squares
@@ -19,11 +19,11 @@ module TicTacToe
 
     def draw(output)
       output.puts
-      output.puts "a  #{@squares['a1']} | #{@squares['a2']} | #{@squares['a3']}"
+      output.puts "a  #{@squares[:a1]} | #{@squares[:a2]} | #{@squares[:a3]}"
       output.puts "  ---+---+---"
-      output.puts "b  #{@squares['b1']} | #{@squares['b2']} | #{@squares['b3']}"
+      output.puts "b  #{@squares[:b1]} | #{@squares[:b2]} | #{@squares[:b3]}"
       output.puts "  ---+---+---"
-      output.puts "c  #{@squares['c1']} | #{@squares['c2']} | #{@squares['c3']}"
+      output.puts "c  #{@squares[:c1]} | #{@squares[:c2]} | #{@squares[:c3]}"
       output.puts "   1   2   3\n\n"
     end
 
@@ -37,7 +37,7 @@ module TicTacToe
     end
 
     def mark(square, piece)
-      @squares[square] = piece
+      @squares[square.to_sym] = piece
     end
 
     def [](square)
@@ -46,14 +46,14 @@ module TicTacToe
 
     def rows
       [
-        Row.new([ @squares["a1"], @squares["a2"], @squares["a3"] ]),
-        Row.new([ @squares["b1"], @squares["b2"], @squares["b3"] ]),
-        Row.new([ @squares["c1"], @squares["c2"], @squares["c3"] ]),
-        Row.new([ @squares["a1"], @squares["b1"], @squares["c1"] ]),
-        Row.new([ @squares["a2"], @squares["b2"], @squares["c2"] ]),
-        Row.new([ @squares["a3"], @squares["b3"], @squares["c3"] ]),
-        Row.new([ @squares["a1"], @squares["b2"], @squares["c3"] ]),
-        Row.new([ @squares["a3"], @squares["b2"], @squares["c1"] ])
+        Row.new([ @squares[:a1], @squares[:a2], @squares[:a3] ]),
+        Row.new([ @squares[:b1], @squares[:b2], @squares[:b3] ]),
+        Row.new([ @squares[:c1], @squares[:c2], @squares[:c3] ]),
+        Row.new([ @squares[:a1], @squares[:b1], @squares[:c1] ]),
+        Row.new([ @squares[:a2], @squares[:b2], @squares[:c2] ]),
+        Row.new([ @squares[:a3], @squares[:b3], @squares[:c3] ]),
+        Row.new([ @squares[:a1], @squares[:b2], @squares[:c3] ]),
+        Row.new([ @squares[:a3], @squares[:b2], @squares[:c1] ])
       ]
     end
 
